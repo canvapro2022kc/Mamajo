@@ -1,0 +1,19 @@
+{
+    "customerName": "Chris",
+    "customerContact": "09052186410",
+    "amountGiven": 100,
+    "items": [
+        {
+            "product_id": 11,
+            "title": "Pork Asado - Mini",
+            "price": 20,
+            "quantity": 1
+        },
+        {
+            "product_id": 2,
+            "title": "Chicken Potato - Mini",
+            "price": 20,
+            "quantity": 1
+        }
+    ]
+}
