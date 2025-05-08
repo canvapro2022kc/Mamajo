@@ -19,32 +19,77 @@ $products = $conn->query("SELECT * FROM products WHERE archived = 0");
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mamajo's POS</title>
+  <title>Mamajo's</title>
   <link rel="stylesheet" href="pos.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    body {
+      background-color: #ff9533 !important;
+    }
+
+    .order-summary {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .checkout-button {
+      background-color: #ff220c !important;
+      border-color: #ff220c !important;
+      color: #fff !important;
+    }
+
+    .checkout-button:hover {
+      background-color: #e61c00 !important;
+      border-color: #e61c00 !important;
+    }
+
     .product-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
     }
+
     .product {
-      flex: 1 1 calc(33.333% - 1rem);
-      max-width: calc(33.333% - 1rem);
+      flex: 1 1 calc(25% - 1rem);
+      max-width: calc(25% - 1rem);
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
       padding: 10px;
       text-align: center;
     }
+
+    @media (max-width: 768px) {
+      .product {
+        flex: 1 1 calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+    }
+
     .product img {
       max-width: 100%;
       max-height: 150px;
       object-fit: contain;
       margin-bottom: 10px;
     }
+
     .product.disabled {
       opacity: 0.5;
       pointer-events: none;
+    }
+
+    #datetime-container {
+      font-weight: bold;
+      color: #055b00;
+      font-size: 15px;
     }
   </style>
 </head>
@@ -53,15 +98,6 @@ $products = $conn->query("SELECT * FROM products WHERE archived = 0");
 <?php include 'navbar.php'; ?>
 
 <div class="container mt-4">
-    <header class="mb-4">
-    <div class="d-flex justify-content-end align-items-center">
-        <div id="datetime-container" class="text-end">
-        <div id="date"></div>
-        <div id="time"></div>
-        </div>
-    </div>
-    </header>
-
   <div class="row">
     <div class="col-md-8">
       <h3>Available Products</h3>
@@ -85,8 +121,9 @@ $products = $conn->query("SELECT * FROM products WHERE archived = 0");
     </div>
 
     <div class="col-md-4">
+      <div id="datetime-container" class="mb-2 text-end"></div>
       <div class="order-summary">
-      <h3 id="order-id">Order ID: #</h3>
+        <h3 id="order-id">Order ID: #</h3>
         <table class="table">
           <thead>
             <tr>
@@ -147,8 +184,8 @@ $products = $conn->query("SELECT * FROM products WHERE archived = 0");
   function updateDateTime() {
     const now = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('date').textContent = now.toLocaleDateString(undefined, options);
-    document.getElementById('time').textContent = now.toLocaleTimeString();
+    const dateTimeString = `${now.toLocaleDateString(undefined, options)} ${now.toLocaleTimeString()}`;
+    document.getElementById('datetime-container').textContent = dateTimeString;
   }
 
   function generateOrderID() {
@@ -241,7 +278,7 @@ $products = $conn->query("SELECT * FROM products WHERE archived = 0");
     .then(r => r.json())
     .then(res => {
       if (res.success) {
-        window.open(`receipt.php?id=${res.orderId}`, '_blank'); // Capital O and D
+        window.open(`receipt.php?id=${res.orderId}`, '_blank');
         document.getElementById('order-items').innerHTML = '';
         orderItems.length = 0;
         updateTotal();

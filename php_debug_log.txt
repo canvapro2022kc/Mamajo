@@ -1,19 +1,19 @@
 {
-    "customerName": "Chris",
-    "customerContact": "09052186410",
-    "amountGiven": 100,
+    "customerName": "Ariana",
+    "customerContact": "09223344789",
+    "amountGiven": 500,
     "items": [
         {
-            "product_id": 11,
-            "title": "Pork Asado - Mini",
-            "price": 20,
-            "quantity": 1
+            "product_id": 4,
+            "title": "Ham & Cheese - Regular",
+            "price": 25,
+            "quantity": 4
         },
         {
-            "product_id": 2,
-            "title": "Chicken Potato - Mini",
-            "price": 20,
-            "quantity": 1
+            "product_id": 3,
+            "title": "Chicken Potato - Bite-size",
+            "price": 15,
+            "quantity": 2
         }
     ]
 }

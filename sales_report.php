@@ -25,14 +25,34 @@ $total_sales = 0;
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sales Report</title>
+  <title>Mamajo's</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #ff9533 !important;
+    }
+    .report-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+    .btn-custom-red {
+      background-color: #ff220c;
+      color: white;
+      border: none;
+    }
+    .btn-custom-red:hover {
+      background-color: #e01e0a;
+      color: white;
+    }
+  </style>
 </head>
 <body>
 
 <?php include 'navbar.php'; ?>
 
-<div class="container mt-5">
+<div class="container mt-5 report-container">
   <h3>Sales Report</h3>
 
   <form method="GET" class="row g-3 mb-4">
@@ -45,7 +65,7 @@ $total_sales = 0;
       <input type="date" id="to" name="to" class="form-control" value="<?= $to ?>">
     </div>
     <div class="col-md-4 d-flex align-items-end">
-      <button type="submit" class="btn btn-primary w-100">Filter</button>
+      <button type="submit" class="btn btn-custom-red w-100">Filter</button>
     </div>
   </form>
 
@@ -71,7 +91,7 @@ $total_sales = 0;
     </tbody>
   </table>
 
-  <div class="text-end">
+  <div class="text-end mt-3">
     <strong>Total Sales: ₱<?= number_format($total_sales, 2) ?></strong>
   </div>
 </div>
