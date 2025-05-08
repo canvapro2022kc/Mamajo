@@ -60,7 +60,6 @@ if (session_status() === PHP_SESSION_NONE) {
         <li class="nav-item"><a class="nav-link" href="orders.php">Orders</a></li>
         <li class="nav-item"><a class="nav-link" href="sales_report.php">Sales Report</a></li>
         <li class="nav-item"><a class="nav-link" href="inventory.php">Inventory</a></li>
-        <li class="nav-item"><a class="nav-link" href="feedback.php">Feedback</a></li>
         <li class="nav-item"><a class="nav-link" href="users.php">Users</a></li>
       </ul>
       <ul class="navbar-nav">

@@ -52,33 +52,40 @@ $products = $conn->query("SELECT * FROM products WHERE archived = 0");
     }
 
     .product {
-      flex: 1 1 calc(25% - 1rem);
-      max-width: calc(25% - 1rem);
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
       padding: 10px;
+      font-size: 13px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      height: 250px; /* Set equal height for all product boxes */
+      box-sizing: border-box;
       text-align: center;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
 
-    @media (max-width: 768px) {
-      .product {
-        flex: 1 1 calc(50% - 1rem);
-        max-width: calc(50% - 1rem);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .product {
-        flex: 1 1 100%;
-        max-width: 100%;
-      }
+    .product:hover {
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      transform: translateY(-5px);
     }
 
     .product img {
       max-width: 100%;
-      max-height: 150px;
+      max-height: 100px;
       object-fit: contain;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
+    }
+
+    .product-name {
+      font-weight: bold;
+    }
+
+    .product-price {
+      color: #e61c00;
+      font-size: 14px;
     }
 
     .product.disabled {
@@ -86,10 +93,33 @@ $products = $conn->query("SELECT * FROM products WHERE archived = 0");
       pointer-events: none;
     }
 
+    /* 3 columns layout (default) */
+    .row-cols-3 .col {
+      flex: 1 1 calc(33.333% - 1rem);
+      max-width: calc(33.333% - 1rem);
+    }
+
+    /* 2 columns layout for small devices (optional) */
+    @media (max-width: 768px) {
+      .row-cols-3 .col {
+        flex: 1 1 calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+      }
+    }
+
+    /* 1 column layout for very small devices */
+    @media (max-width: 480px) {
+      .row-cols-3 .col {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+    }
+
     #datetime-container {
       font-weight: bold;
       color: #055b00;
       font-size: 15px;
+      margin-left: 870px;
     }
   </style>
 </head>
@@ -107,30 +137,36 @@ $products = $conn->query("SELECT * FROM products WHERE archived = 0");
     </div>
     </header>
 
-  <div class="row">
-    <div class="col-md-8">
-      <div class="product-grid">
-        <?php while ($row = $products->fetch_assoc()): ?>
-          <?php if ($row['stock'] > 0): ?>
+<div class="row">
+  <!-- Products section (3x4 layout) -->
+  <div class="col-md-7">
+    <div class="row row-cols-3 g-2">
+      <?php while ($row = $products->fetch_assoc()): ?>
+        <?php if ($row['stock'] > 0): ?>
+          <div class="col">
             <div class="product" data-id="<?= $row['id'] ?>" data-name="<?= htmlspecialchars($row['name']) ?>" data-price="<?= $row['price'] ?>">
               <img src="<?= htmlspecialchars($row['image']) ?>" alt="<?= htmlspecialchars($row['name']) ?>">
-              <p class="product-name fw-bold"><?= htmlspecialchars($row['name']) ?></p>
+              <p class="product-name"><?= htmlspecialchars($row['name']) ?></p>
               <p class="product-price">₱<?= number_format($row['price'], 2) ?></p>
             </div>
-          <?php else: ?>
+          </div>
+        <?php else: ?>
+          <div class="col">
             <div class="product disabled">
               <img src="<?= htmlspecialchars($row['image']) ?>" alt="<?= htmlspecialchars($row['name']) ?>">
               <p class="product-name text-muted"><?= htmlspecialchars($row['name']) ?></p>
               <p class="product-price text-muted">₱<?= number_format($row['price'], 2) ?> (Unavailable)</p>
             </div>
-          <?php endif; ?>
-        <?php endwhile; ?>
-      </div>
+          </div>
+        <?php endif; ?>
+      <?php endwhile; ?>
     </div>
+  </div>
 
-    <div class="col-md-4">
+  <!-- Customer form and order summary -->
+  <div class="col-md-5">
       <div id="datetime-container" class="mb-2 text-end"></div>
-      <div class="order-summary">
+       <div class="order-summary bg-white p-3 rounded shadow-sm">
         <h3 id="order-id">Order ID: #</h3>
         <table class="table">
           <thead>

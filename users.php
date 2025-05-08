@@ -21,7 +21,7 @@ $users = $conn->query("SELECT id, username, role FROM users");
   <title>Users - Mamajo's POS</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="background-color: #ff9533;">
 <?php include 'navbar.php'; ?>
 <div class="container mt-5">
   <h2 class="mb-4">User Accounts</h2>
@@ -29,7 +29,7 @@ $users = $conn->query("SELECT id, username, role FROM users");
   <a href="add_user.php" class="btn btn-success mb-3">Add New User</a>
 
   <table class="table table-striped table-bordered">
-    <thead class="table-dark">
+    <thead style="background-color: #ff220c; color: #ff220c;">
       <tr>
         <th>ID</th>
         <th>Username</th>
