@@ -17,11 +17,11 @@ $products = $conn->query("SELECT * FROM products WHERE archived = 0");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mamajo's POS</title>
-  <link rel="stylesheet" href="pos.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="pos.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       background-color: #ff9533 !important;
@@ -98,15 +98,14 @@ $products = $conn->query("SELECT * FROM products WHERE archived = 0");
 <?php include 'navbar.php'; ?>
 
 <div class="container mt-4">
-  <header class="mb-3">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-  <h3 class="mb-0">Available Products</h3>
-  <div id="datetime-container" class="text-end" style="min-width: 850px;">
-  <div id="date"></div>
-    <div id="time"></div>
+    <header class="mb-4">
+    <div class="d-flex justify-content-end align-items-center">
+        <div id="datetime-container" class="text-end">
+        <div id="date"></div>
+        <div id="time"></div>
+        </div>
     </div>
-  </div>
-  </header>
+    </header>
 
   <div class="row">
     <div class="col-md-8">
@@ -130,6 +129,7 @@ $products = $conn->query("SELECT * FROM products WHERE archived = 0");
     </div>
 
     <div class="col-md-4">
+      <div id="datetime-container" class="mb-2 text-end"></div>
       <div class="order-summary">
         <h3 id="order-id">Order ID: #</h3>
         <table class="table">
@@ -192,8 +192,8 @@ $products = $conn->query("SELECT * FROM products WHERE archived = 0");
   function updateDateTime() {
     const now = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('date').textContent = now.toLocaleDateString(undefined, options);
-    document.getElementById('time').textContent = now.toLocaleTimeString();
+    const dateTimeString = `${now.toLocaleDateString(undefined, options)} ${now.toLocaleTimeString()}`;
+    document.getElementById('datetime-container').textContent = dateTimeString;
   }
 
   function generateOrderID() {

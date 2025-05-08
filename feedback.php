@@ -14,14 +14,25 @@ $feedbacks = $conn->query("SELECT * FROM feedback ORDER BY created_at DESC");
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Customer Feedback</title>
+  <title>Mamajo's</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #ff9533 !important;
+    }
+    .feedback-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 <body>
 
 <?php include 'navbar.php'; ?>
 
-<div class="container mt-5">
+<div class="container mt-5 feedback-container">
   <h3>Customer Feedback</h3>
 
   <table class="table table-bordered mt-3">
