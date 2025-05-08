@@ -49,25 +49,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <title>Login - Mamajo's POS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="login.css" />
 </head>
-<body class="bg-light d-flex justify-content-center align-items-center vh-100">
+<body>
 
-<div class="card shadow-sm p-4" style="width: 24rem;">
-  <h4 class="text-center mb-4">Admin Login</h4>
+<img src="images/Your paragraph text (2).png" class="background-overlay" alt="background image">
 
-  <?php if (!empty($error)): ?>
-    <div class="alert alert-danger text-center"><?= htmlspecialchars($error) ?></div>
-  <?php endif; ?>
+<header class="page-header">
+  <div class="header-text">
+    <span class="mamajos-title">Mamajo's | </span>
+    <span class="subtitle"> Point of Sales & Inventory Management System</span>
+  </div>
+</header>
 
-  <form method="POST">
-    <div class="mb-3">
-      <input type="text" name="username" class="form-control" placeholder="Username" required>
-    </div>
-    <div class="mb-3">
-      <input type="password" name="password" class="form-control" placeholder="Password" required>
-    </div>
-    <button type="submit" class="btn btn-primary w-100">Login</button>
-  </form>
+<div class="custom-body">
+<div class="main-content">
+  <!-- Login card first (now on the left) -->
+  <div class="card shadow-sm p-4 login-container" style="width: 20rem;">
+    <h4 class="text-center mb-4">Hello there!</h4>
+
+    <?php if (!empty($error)): ?>
+      <div class="alert alert-danger text-center"><?= htmlspecialchars($error) ?></div>
+    <?php endif; ?>
+
+    <form method="POST">
+      <div class="mb-3">
+        <input type="text" name="username" class="form-control" placeholder="Username" required>
+      </div>
+      <div class="mb-3">
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+      </div>
+      <button type="submit" class="btn">Login</button>
+      <p class="mt-3 text-center">
+        <a href="forgot_password.php">Forgot Password?</a>
+      </p>
+
+    </form>
+  </div>
+
+  <!-- Mascot second (now on the right) -->
+  <div class="image-container">
+    <img src="images/Hello Mamajo's NO BG (2).png" class="Mascot" alt="Mamajo Mascot">
+  </div>
 </div>
 
 </body>

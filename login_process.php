@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); // Start the session
 include 'db_connect.php'; // assumes this connects using $conn
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['error'] = "User not found.";
     }
 
-    header("Location: login.php");
+    //header("Location: login.php");
     exit();
 }
 ?>

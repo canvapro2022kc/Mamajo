@@ -1,0 +1,173 @@
+/* Import Fonts */
+@font-face {
+    font-family: 'WideLight';
+    src: url('fonts/Agrandir-WideLight.otf') format('truetype');
+}
+@font-face {
+    font-family: 'TextBold';
+    src: url('fonts/Agrandir-TextBold.otf') format('truetype');
+}
+@font-face {
+    font-family: 'Regular';
+    src: url('fonts/Agrandir-Regular.otf') format('truetype');
+}
+
+/* Background Overlay */
+.background-overlay {
+    position: absolute;
+    top: -46px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+/* Body Layout */
+.custom-body {
+    background-color: #055b00;
+    min-height: calc(100vh - 120px); /* Adjust depending on your header height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+/* Header */
+.page-header {
+    width: 100%;
+    background-color: #055b00;
+    padding: 20px 40px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 20;
+}
+  
+.header-text {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    gap: 20px;
+    white-space: nowrap;
+    margin-right: 450px;
+}
+  
+.mamajos-title {
+    font-size: 50px;
+    font-family: 'TextBold';
+    color: white;
+}
+  
+.subtitle {
+    font-size: 22px;
+    font-family: 'Regular';
+    color: white;
+    position: relative;
+    top: -6px;
+}
+  
+
+/* Main Section */
+.main-content {
+    display: flex;
+    flex-direction: row-reverse; /* ← THIS flips the order */
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    max-width: 1200px;
+    margin: -40px auto 0 auto;
+    padding: 20px;
+    z-index: 10;
+}
+
+.main-content h4 {
+    color:#055b00;
+}
+
+/* Mascot */
+.image-container {
+    order: 2; /* This might still be needed if you reversed flex order manually */
+    width: 50%;
+    padding: 30px;
+    text-align: center;
+    margin-left: 50px;
+}
+
+.Mascot {
+    max-width: 550px;
+    width: 100%;
+    height: auto;
+}
+
+/* Login Box */
+.login-container {
+    width: 24rem;
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    top: -50px;
+}
+
+
+.login-form p {
+    font-family: 'TextBold';
+    margin-bottom: 20px;
+    font-size: 30px;
+    text-align: center;
+    color: #055b00;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #055b00;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'TextBold';
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #049100;
+}
+
+.alert-box {
+    background-color: #f8d7da;
+    color: #842029;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-family: 'Regular';
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .mamajos {
+        font-size: 36px;
+        display: block;
+    }
+
+    .subtitle {
+        font-size: 16px;
+        display: block;
+        margin-left: 0;
+    }
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-container, .image-container {
+        width: 90%;
+        margin: 0 auto 20px;
+    }
+}
